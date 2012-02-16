@@ -35,7 +35,7 @@ module RestClient
       if (200..207).include? code
         self
       elsif [301, 302, 307].include? code
-        unless [:get, :head].include? args[:method]
+        unless [:get, :head, :post].include? args[:method]
           raise Exceptions::EXCEPTIONS_MAP[code].new(self, code)
         else
           follow_redirection(request, result, & block)
